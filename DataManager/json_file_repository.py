@@ -32,7 +32,7 @@ def delete(path: str, id: int) -> None:
 def update(path: str, data: dict) -> None:
     """Represents the logic of updating data to file.
          path - this is the path to the file with basic data for CRUD.
-         data - data to add."""
+         data - data to update."""
     pass
 
 
