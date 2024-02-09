@@ -1,12 +1,22 @@
 """CRUD operations. Executing of request only. If request throw an exception,
 the functions in the 'json_file_service' will handle it."""
 import json
-
+from Configuration.config import PRODUCT_ID, PRODUCTS, INDENT
 def add(path: str, data: dict) -> None:
     """Represents the logic of adding data to file.
      path - this is the path to the file with basic data for CRUD.
      data - data to add."""
-    pass
+    all_data = get(path)
+    if not is_exists(all_data, data):
+        all_data[PRODUCTS].append(data)
+        write(path, all_data)
+
+def is_exists (data, all_data):
+    return any(map(lambda item: item[PRODUCT_ID]==data[PRODUCT_ID], all_data))
+
+def write(path, data):
+    with open(path, 'w') as file:
+        json.dump(data, file, indent=INDENT)
 
 
 def get(path: str) -> dict[list[dict]]:
