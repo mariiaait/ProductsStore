@@ -1,6 +1,6 @@
 """CRUD operations. Executing of request only. If request throw an exception,
 the functions in the 'json_file_service' will handle it."""
-
+import json
 
 def add(path: str, data: dict) -> None:
     """Represents the logic of adding data to file.
@@ -12,7 +12,8 @@ def add(path: str, data: dict) -> None:
 def get(path: str) -> dict[list[dict]]:
     """Represents the logic of getting data from file.
      path - this is the path to the file with basic data for CRUD."""
-    pass
+    with open(path) as file:
+        return json.load(file)
 
 
 def get_by_id(path: str, id: int) -> dict:
