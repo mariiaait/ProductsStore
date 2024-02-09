@@ -1,0 +1,15 @@
+{
+  "products":
+          [
+            {"id": 1, "name": "bread"},
+            {"id": 2, "name": "butter"},
+            {"id": 3, "name": "pie"},
+            {"id": 4, "name": "potato"},
+            {"id": 5, "name": "carrot"},
+            {"id": 6, "name": "beetroot"},
+            {"id": 7, "name": "apple"},
+            {"id": 8, "name": "pear"},
+            {"id": 9, "name": "peach"},
+            {"id": 10, "name": "melon"}
+          ]
+}
