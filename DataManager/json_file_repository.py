@@ -37,7 +37,11 @@ def delete(path: str, id: int) -> None:
     """Represents the logic of deleting data from file by id.
          path - this is the path to the file with basic data for CRUD.
          id - this is id of data."""
-    pass
+    all_data = get(path)
+    target = list(item for item in all_data[PRODUCTS] if item[PRODUCT_ID]==id)
+    if target:
+        all_data[PRODUCTS].remove(*target)
+        write(path, all_data)
 
 
 def update(path: str, data: dict) -> None:
