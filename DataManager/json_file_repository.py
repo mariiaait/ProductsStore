@@ -56,8 +56,8 @@ def update(path: str, data: dict) -> None:
     if not is_exists(data, all_data):
         all_data[PRODUCTS].append(data)
     else:
-        all_data[PRODUCTS] = list(map(lambda item: {"id": data[PRODUCT_ID], "name": data[PRODUCT_NAME]}
-            if item[PRODUCT_ID] == data[PRODUCT_ID] else item, all_data[PRODUCTS]))
+        all_data[PRODUCTS] = list(map(lambda item: data if item[PRODUCT_ID] == data[PRODUCT_ID]
+        else item, all_data[PRODUCTS]))
     write(path, all_data)
 
 
