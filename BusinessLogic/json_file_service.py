@@ -8,27 +8,27 @@ def add(path: str, *args: tuple) -> bool:
     path - this is the path to the file with basic data for CRUD.
     args - data which adds to the file by path."""
     data = None
-    return repository.add(PATH_TO_JSON_FILE, data)
+    return repository.add(path, data)
 
 
 def get(path: str) -> dict[list[dict]]:
     """Business logic of getting data from file.
        path - this is the path to the file with basic data for CRUD."""
-    return repository.get(PATH_TO_JSON_FILE)
+    return repository.get(path)
 
 
 def get_by_id(path: str, id: int) -> dict:
     """Business logic of getting data from file by id.
          path - this is the path to the file with basic data for CRUD.
          id - this is id of data."""
-    return repository.get_by_id(PATH_TO_JSON_FILE, PRODUCT_ID)
+    return repository.get_by_id(path, id)
 
 
 def delete(path: str, id: int) -> bool:
     """Business logic of deleting data from file by id.
          path - this is the path to the file with basic data for CRUD.
          id - this is id of data."""
-    return repository.delete(PATH_TO_JSON_FILE, PRODUCT_ID)
+    return repository.delete(path, id)
 
 
 def update(path: str, *args: tuple) -> bool:
@@ -36,10 +36,10 @@ def update(path: str, *args: tuple) -> bool:
              path - this is the path to the file with basic data for CRUD.
              args - data to update."""
     data = None
-    return repository.update(PATH_TO_JSON_FILE, data)
+    return repository.update(path, data)
 
 
 def get_last(path: str) -> dict:
     """Business logic of getting last data from file.
           path - this is the path to the file with basic data for CRUD."""
-    return repository.get_last(PATH_TO_JSON_FILE)
+    return repository.get_last(path)
