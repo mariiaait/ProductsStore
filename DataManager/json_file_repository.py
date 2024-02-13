@@ -26,28 +26,16 @@ def get(path: str) -> dict[list[dict]]:
         return json.load(file)
 
 
-def get_by_id(path: str, id: int) -> dict:
+def get_by_id(path: str, id: int) -> dict|None:
     """Represents the logic of getting data from file by id.
      path - this is the path to the file with basic data for CRUD.
      id - this is id of data."""
-    try:
-        with open(path, 'r') as file:
-            data = json.load(file)
-            if 'products' in data and isinstance(data['products'], list):
-                for product in data['products']:
-                    if 'id' in product and product['id'] == id:
-                        return product
-                print(f"No data found with id {id}.")
-                return None
-            else:
-                print("Invalid JSON structure or missing 'products' list.")
-                return None
-    except FileNotFoundError:
-        print(f"File not found: {path}")
-        return None
-    except json.JSONDecodeError:
-        print(f"Error decoding JSON file: {path}")
-        return None
+    all_data = get(path)
+    for item in all_data[PRODUCTS]:
+        if item[PRODUCT_ID] == id:
+            return item
+    return None
+
 
 
 def delete(path: str, id: int) -> None:
@@ -67,15 +55,7 @@ def update(path: str, data: dict) -> None:
 def get_last(path: str) -> dict:
     """Represents the logic of getting last data from file.
          path - this is the path to the file with basic data for CRUD."""
-    try:
-        with open(path, 'r') as file:
-            data = json.load(file)
-            if 'products' in data and isinstance(data['products'], list) and len(data['products']) > 0:
-                last_item = data['products'][-1]
-                return last_item
-            else:
-                print("Invalid JSON structure or empty 'products' list.")
-    except FileNotFoundError:
-        print(f"File not found: {file_path}")
-    except json.JSONDecodeError:
-        print(f"Error decoding JSON file: {file_path}")
+    all_data = get(path)
+    return all_data[PRODUCTS][-1]
+
+

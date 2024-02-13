@@ -13,6 +13,8 @@ def main() -> None:
     path - this is the path to the file with basic data for CRUD."""
     create_or_default(PATH_TO_JSON_FILE)
     print (repository.get(PATH_TO_JSON_FILE))
+    print (repository.get_last(PATH_TO_JSON_FILE))
+    print (repository.get_by_id(PATH_TO_JSON_FILE, 4))
 
 def create_or_default(path):
     if (os.path.exists(path) and os.path.getsize(path)==0) or (not os.path.exists(path)):
