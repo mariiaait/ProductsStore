@@ -42,4 +42,4 @@ def update(path: str, *args: tuple) -> bool:
 def get_last(path: str) -> dict:
     """Business logic of getting last data from file.
           path - this is the path to the file with basic data for CRUD."""
-    return repository.get_last()
+    return repository.get_last(PATH_TO_JSON_FILE)
