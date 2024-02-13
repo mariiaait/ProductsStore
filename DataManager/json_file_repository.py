@@ -30,11 +30,16 @@ def get(path: str) -> dict[list[dict]]:
         return json.load(file)
 
 
-def get_by_id(path: str, id: int) -> dict:
+def get_by_id(path: str, id: int) -> dict|None:
     """Represents the logic of getting data from file by id.
      path - this is the path to the file with basic data for CRUD.
      id - this is id of data."""
-    pass
+    all_data = get(path)
+    for item in all_data[PRODUCTS]:
+        if item[PRODUCT_ID] == id:
+            return item
+    return None
+
 
 
 def delete(path: str, id: int) -> None:
@@ -62,7 +67,10 @@ def update(path: str, data: dict) -> None:
     write(path, all_data)
 
 
-def get_last() -> dict:
+def get_last(path: str) -> dict:
     """Represents the logic of getting last data from file.
          path - this is the path to the file with basic data for CRUD."""
-    pass
+    all_data = get(path)
+    return all_data[PRODUCTS][-1]
+
+
