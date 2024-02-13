@@ -42,10 +42,11 @@ def delete(path: str, id: int) -> None:
          path - this is the path to the file with basic data for CRUD.
          id - this is id of data."""
     all_data = get(path)
-    target = list(item for item in all_data[PRODUCTS] if item[PRODUCT_ID] == id)
-    if target:
-        all_data[PRODUCTS].remove(*target)
-        write(path, all_data)
+    for item in all_data[PRODUCTS]:
+        if item[PRODUCT_ID]==id:
+            all_data[PRODUCTS].remove(item)
+            write(path, all_data)
+            return
 
 
 def update(path: str, data: dict) -> None:
