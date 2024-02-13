@@ -42,6 +42,7 @@ def delete(path: str, id: int) -> None:
         if item[PRODUCT_ID]==id:
             all_data[PRODUCTS].remove(item)
             write(path, all_data)
+            return
 
 
 def update(path: str, data: dict) -> None:
