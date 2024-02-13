@@ -1,5 +1,5 @@
 """Initializing of test data from test_data.json file to data.json file."""
-
+from Configuration.config import INDENT
 import json
 
 
@@ -12,4 +12,4 @@ def initialize(from_file_path: str, to_file_path: str) -> None:
         data_json = json.load(file)
 
     with open(to_file_path, 'w') as file:
-        json.dump(data_json, file)
+        json.dump(data_json, file, indent=INDENT)
