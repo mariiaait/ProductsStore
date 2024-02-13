@@ -1,41 +1,45 @@
 """Business logic of project, namely, exception handling(decorators), logs, converting etc."""
+import DataManager.json_file_repository as repository
+from Configuration.config import PATH_TO_JSON_FILE, PRODUCT_ID
 
 
 def add(path: str, *args: tuple) -> bool:
     """Business logic of adding data to file.
     path - this is the path to the file with basic data for CRUD.
     args - data which adds to the file by path."""
-    pass
+    data = None
+    return repository.add(path, data)
 
 
 def get(path: str) -> dict[list[dict]]:
     """Business logic of getting data from file.
        path - this is the path to the file with basic data for CRUD."""
-    pass
+    return repository.get(path)
 
 
 def get_by_id(path: str, id: int) -> dict:
     """Business logic of getting data from file by id.
          path - this is the path to the file with basic data for CRUD.
          id - this is id of data."""
-    pass
+    return repository.get_by_id(path, id)
 
 
 def delete(path: str, id: int) -> bool:
     """Business logic of deleting data from file by id.
          path - this is the path to the file with basic data for CRUD.
          id - this is id of data."""
-    pass
+    return repository.delete(path, id)
 
 
 def update(path: str, *args: tuple) -> bool:
     """Business logic of updating data in file.
              path - this is the path to the file with basic data for CRUD.
              args - data to update."""
-    pass
+    data = None
+    return repository.update(path, data)
 
 
-def get_last() -> dict:
+def get_last(path: str) -> dict:
     """Business logic of getting last data from file.
           path - this is the path to the file with basic data for CRUD."""
-    pass
+    return repository.get_last(path)
