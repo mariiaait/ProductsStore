@@ -1,7 +1,9 @@
 """CRUD operations. Executing of request only. If request throw an exception,
 the functions in the 'json_file_service' will handle it."""
 import json
-from Configuration.config import PRODUCT_ID, PRODUCTS, INDENT
+from Configuration.config import PRODUCT_ID, PRODUCTS, INDENT, PRODUCT_NAME
+
+
 def add(path: str, data: dict) -> None:
     """Represents the logic of adding data to file.
      path - this is the path to the file with basic data for CRUD.
@@ -11,8 +13,10 @@ def add(path: str, data: dict) -> None:
         all_data[PRODUCTS].append(data)
         write(path, all_data)
 
-def is_exists (data, all_data):
-    return any(map(lambda item: item[PRODUCT_ID]==data[PRODUCT_ID], all_data))
+
+def is_exists(data: dict, all_data: dict) -> bool:
+    return any(map(lambda item: item[PRODUCT_ID] == data[PRODUCT_ID], all_data[PRODUCTS]))
+
 
 def write(path, data):
     with open(path, 'w') as file:
@@ -49,7 +53,13 @@ def update(path: str, data: dict) -> None:
     """Represents the logic of updating data to file.
          path - this is the path to the file with basic data for CRUD.
          data - data to update."""
-    pass
+    all_data = get(path)
+    if not is_exists(data, all_data):
+        all_data[PRODUCTS].append(data)
+    else:
+        all_data[PRODUCTS] = list(map(lambda item: data if item[PRODUCT_ID] == data[PRODUCT_ID]
+        else item, all_data[PRODUCTS]))
+    write(path, all_data)
 
 
 def get_last() -> dict:
