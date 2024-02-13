@@ -2,7 +2,7 @@
 import DataManager.json_file_repository as repository
 from Infrastructure.Converters.to_dict import  to_dict
 
-def add(path: str, *args: tuple) -> dict:
+def add(path: str, *args) -> dict:
     """Business logic of adding data to file.
     path - this is the path to the file with basic data for CRUD.
     args - data which adds to the file by path."""
