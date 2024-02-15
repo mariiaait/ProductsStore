@@ -11,7 +11,7 @@ def add(path: str, data: dict) -> None:
     all_data = get(path)
     if not is_exists(data, all_data):
         all_data[PRODUCTS].append(data)
-        write(path, all_data)
+    write(path, sort_data_by_id(all_data))
 
 
 def is_exists(data: dict, all_data: dict) -> bool:
@@ -63,7 +63,7 @@ def update(path: str, data: dict) -> None:
     else:
         all_data[PRODUCTS] = list(map(lambda item: data if item[PRODUCT_ID] == data[PRODUCT_ID]
         else item, all_data[PRODUCTS]))
-    write(path, all_data)
+    write(path, sort_data_by_id(all_data))
 
 
 def get_last(path: str) -> dict:
@@ -71,3 +71,7 @@ def get_last(path: str) -> dict:
          path - this is the path to the file with basic data for CRUD."""
     all_data = get(path)
     return all_data[PRODUCTS][-1]
+
+
+def sort_data_by_id(data: dict) -> dict:
+    return {PRODUCTS: sorted(data[PRODUCTS], key=lambda item: item[PRODUCT_ID])}
