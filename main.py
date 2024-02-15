@@ -21,6 +21,7 @@ def main() -> None:
     print (service.update(PATH_TO_JSON_FILE, 5, "mango"))
     print (service.update(PATH_TO_JSON_FILE, 15, "lime"))
     print (service.delete(PATH_TO_JSON_FILE, 20))
+    service.add(PATH_TO_JSON_FILE, 16, "kiwi")
 
 
 def create_or_default(path):

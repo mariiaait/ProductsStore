@@ -3,7 +3,7 @@
 from Configuration.config import PRODUCT_ID, PRODUCT_NAME
 
 
-def to_dict(*args: tuple) -> dict:
+def to_dict(*args: tuple[tuple, ...]) -> dict:
     """Function which converts passed data to dictionary.
     *args - data to convert."""
     if len(args) == 2:
