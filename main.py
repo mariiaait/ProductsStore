@@ -6,14 +6,17 @@ import BusinessLogic.json_file_service as service
 import os
 
 """Main file for project run."""
-def input_data(*args):
-    data =[]
+
+
+def input_data(*args) -> list:
+    data = []
     for arg in args:
         temp = input(f"Input {arg}: ")
-        if arg=='id':
-            temp=int(temp)
+        if arg == 'id' and temp.isdigit():
+            temp = int(temp)
         data.append(temp)
     return data
+
 
 def main() -> None:
     """Function with project's run logic.
@@ -25,7 +28,7 @@ def main() -> None:
     while True:
         command = input("Input a command (add, update, delete, get, get_by_id, get_last, exit): ")
 
-        if command=='add':
+        if command == 'add':
             data = input_data('id', 'name')
             print(service.add(PATH_TO_JSON_FILE, *data))
         elif command == 'update':
@@ -44,20 +47,15 @@ def main() -> None:
         elif command == 'exit':
             break
         else:
-            print ('Wrong command. Try again!')
+            print('Wrong command. Try again!')
 
 
 def create_or_default(path):
-    if (os.path.exists(path) and os.path.getsize(path)==0) or (not os.path.exists(path)):
+    if (os.path.exists(path) and os.path.getsize(path) == 0) or (not os.path.exists(path)):
         with open(path, 'w') as file:
             json.dump(DEFAULT_FILE_DATA, file)
-
 
 
 if __name__ == "__main__":
     """Run of the project."""
     main()
-
-
-
-

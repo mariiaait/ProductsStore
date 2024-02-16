@@ -21,7 +21,7 @@ def check_parameters_types(func) -> Callable:
     return wrapper
 
 
-logging.basicConfig(filename=PATH_TO_LOG_FILE, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename=PATH_TO_LOG_FILE, format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 
 def handle_crud_exceptions(log_mes: str) -> Callable:
@@ -34,7 +34,7 @@ def handle_crud_exceptions(log_mes: str) -> Callable:
                 return {"is_success": True, "response": response, "errors": None}
             except Exception as ex:
                 logging.error(ex)
-                return {"is_success": False, "response": None, "errors": str(ex)}
+                return {"is_success": False, "response": None, "errors": ex}
 
         return wrapper
 
